@@ -17,7 +17,7 @@ struct Node
 }
 *first = NULL;
 
-// Cria uma lista duplamente encadeada a partir de um array
+// Cria uma lista duplamente ligada a partir de um array
 void create(int A[], int n)
 {
     struct Node *t, *last;
@@ -41,7 +41,7 @@ void create(int A[], int n)
     }
 }
 
-// Exibe os elementos da lista duplamente encadeada
+// Exibe os elementos da lista duplamente ligados
 void Display(struct Node *p)
 {
     while(p)
@@ -52,7 +52,7 @@ void Display(struct Node *p)
     printf("\n");
 }
 
-// Conta o número de nós na lista duplamente encadeada
+// Conta o número de nós na lista duplamente ligados
 int count(struct Node *p)
 {
     int l = 0;
@@ -65,7 +65,7 @@ int count(struct Node *p)
     return l;
 }
 
-// Insere um elemento na lista duplamente encadeada em uma determinada posição
+// Insere um elemento na lista duplamente ligada em uma determinada posição
 void Insert(struct Node *p, int index, int x)
 {
     struct Node *t;
@@ -98,7 +98,7 @@ void Insert(struct Node *p, int index, int x)
     }
 }
 
-// Remove um elemento da lista duplamente encadeada com base no índice
+// Remove um elemento da lista duplamente ligada com base no índex
 int Delete(struct Node *p, int index)
 {
     struct Node *q;
