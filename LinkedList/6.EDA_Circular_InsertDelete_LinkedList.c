@@ -14,7 +14,6 @@ struct Node
 {
     int data;
     struct Node *next;  
-    
 }
 *Head;
 
@@ -23,46 +22,50 @@ void create(int A[], int n)
     int i;
     struct Node *t, *last;
 
-    Head = (struct Node *)malloc(sizeof(struct Node)) ;
+    // Cria o primeiro nó
+    Head = (struct Node *)malloc(sizeof(struct Node));
     Head->data = A[0];
     Head->next = Head;
     last = Head;
 
+    // Cria e conecta os nós restantes
     for (i = 1; i < n; i++)
     {
         t = (struct Node*)malloc(sizeof(struct Node));
         t->data = A[i] ;
-        t->next=last->next ;
+        t->next = last->next;
         last->next = t;
         last = t;
     }
 }
 
+// Conta o número de nós na lista circular
 int count(struct Node *p)
 {
-    int l=0;
+    int l = 0;
 
-   do
-   {
-    l++;
-    p=p->next ;
-   }
-   while(p != Head) ;
+    do
+    {
+        l++;
+        p = p->next;
+    }
+    while(p != Head);
 
-   return l;
+    return l;
 }
 
-void Insert(struct Node *p,int index, int x)
+// Insere um elemento na lista circular em uma determinada posição
+void Insert(struct Node *p, int index, int x)
 {
     struct Node *t;
     int i;
 
     if(index < 0 || index > count(p))
-        return ;
+        return;
 
     if(index == 0)
     {
-        t=(struct Node *)malloc(sizeof(struct Node));
+        t = (struct Node *)malloc(sizeof(struct Node));
         t->data = x;
 
         if(Head == NULL)
@@ -83,16 +86,17 @@ void Insert(struct Node *p,int index, int x)
     }
     else
     {
-        for(i=0; i<index-1; i++) 
-        p=p->next;
+        for(i = 0; i < index - 1; i++) 
+            p = p->next;
 
-        t=(struct Node *)malloc(sizeof(struct Node));
+        t = (struct Node *)malloc(sizeof(struct Node));
         t->data = x;
         t->next = p->next;
         p->next = t;
     }
 }
 
+// Exclui um elemento da lista circular com base no índice
 int Delete(struct Node *p, int index)
 {
     struct Node *q = NULL;
@@ -101,7 +105,7 @@ int Delete(struct Node *p, int index)
     if(index < 0 || index > count(Head))
         return -1;
 
-    if (index == 1)
+    if(index == 1)
     {
         while(p->next != Head)
             p = p->next;
@@ -109,7 +113,7 @@ int Delete(struct Node *p, int index)
         x = Head->data;
         if(Head == p)
         {
-            free(Head) ;
+            free(Head);
             Head = NULL;
         }
         else
@@ -121,18 +125,18 @@ int Delete(struct Node *p, int index)
     }
     else
     {
-        for(i=0; i < index-2; i++)
+        for(i = 0; i < index - 2; i++)
             p = p->next;
-            
+
         q = p->next;
         p->next = q->next;
         x = q->data;
         free(q);
     }
     return x;
-
 }
 
+// Exibe os elementos da lista circular
 void Display(struct Node *h)
 {
     do
@@ -140,23 +144,20 @@ void Display(struct Node *h)
         printf("%d ", h->data);
         h = h->next;
     }
-    while(h != Head) ;
+    while(h != Head);
 
-    printf("\n") ;
+    printf("\n");
 }
 
 int main()
 {
-
-    
-    int A[]={3, 5, 7, 12, 16};
+    int A[] = {3, 5, 7, 12, 16};
     create(A, 5);
     
-    Insert(Head, 4, 10) ;
-    Delete(Head, 2) ;
+    Insert(Head, 4, 10);
+    Delete(Head, 2);
     
-
     Display(Head);
     return 0;
-
 }
+
