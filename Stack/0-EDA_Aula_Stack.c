@@ -1,5 +1,5 @@
         #include "Exe2Stacks_EDA.h"
-        #include "fatal_EDA.h"
+        #include "fatal.h"
         #include <stdlib.h>
         #include <stdio.h>
 
