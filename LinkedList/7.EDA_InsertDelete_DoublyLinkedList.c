@@ -9,7 +9,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 struct Node
 {
     struct Node *prev;
@@ -18,17 +17,20 @@ struct Node
 }
 *first = NULL;
 
+// Cria uma lista duplamente encadeada a partir de um array
 void create(int A[], int n)
 {
     struct Node *t, *last;
     int i;
 
+    // Cria o primeiro nó
     first = (struct Node *)malloc(sizeof(struct Node));
     first->data = A[0];
     first->prev = first->next = NULL;
     last = first;
 
-    for(i=1; i<n; i++)
+    // Cria e conecta os nós restantes
+    for(i = 1; i < n; i++)
     {
         t = (struct Node *)malloc(sizeof(struct Node));
         t->data = A[i];
@@ -39,16 +41,18 @@ void create(int A[], int n)
     }
 }
 
+// Exibe os elementos da lista duplamente encadeada
 void Display(struct Node *p)
 {
     while(p)
     {
-        printf("%d ", p->data) ;
+        printf("%d ", p->data);
         p = p->next;
     }
     printf("\n");
 }
 
+// Conta o número de nós na lista duplamente encadeada
 int count(struct Node *p)
 {
     int l = 0;
@@ -56,11 +60,12 @@ int count(struct Node *p)
     while(p)
     {
         l++;
-        p=p->next;
+        p = p->next;
     }
     return l;
 }
 
+// Insere um elemento na lista duplamente encadeada em uma determinada posição
 void Insert(struct Node *p, int index, int x)
 {
     struct Node *t;
@@ -68,7 +73,7 @@ void Insert(struct Node *p, int index, int x)
 
     if(index == 0)
     {
-        t = (struct Node *) malloc(sizeof(struct Node));
+        t = (struct Node *)malloc(sizeof(struct Node));
         t->data = x;
         t->prev = NULL;
         t->next = first;
@@ -77,22 +82,23 @@ void Insert(struct Node *p, int index, int x)
     }
     else
     {
-        for(i=0; i<index-1; i++)
+        for(i = 0; i < index - 1; i++)
             p = p->next;
-        
-        t=(struct Node *)malloc(sizeof(struct Node));
+
+        t = (struct Node *)malloc(sizeof(struct Node));
         t->data = x;
 
         t->prev = p;
         t->next = p->next;
 
         if(p->next)
-            p->next->prev = t ;    
+            p->next->prev = t;
 
-        p->next = t;   
+        p->next = t;
     }
 }
 
+// Remove um elemento da lista duplamente encadeada com base no índice
 int Delete(struct Node *p, int index)
 {
     struct Node *q;
@@ -101,7 +107,7 @@ int Delete(struct Node *p, int index)
     if(index < 1 || index > count(p))
         return -1;
 
-    if(index==1)
+    if(index == 1)
     {
         first = first->next;
         if(first)
@@ -112,7 +118,7 @@ int Delete(struct Node *p, int index)
     }
     else
     {
-        for(i=0; i<index-1; i++)
+        for(i = 0; i < index - 1; i++)
             p = p->next;
 
         p->prev->next = p->next;
@@ -127,15 +133,14 @@ int Delete(struct Node *p, int index)
 
 int main()
 {
+    int A[] = {3, 6, 8, 12, 17};
+    create(A, 5);
 
-    int A[] = {3, 6, 8, 12, 17} ;
-    create(A, 5) ;
+    Insert(first, 2, 25);
+    Delete(first, 4);
 
-    Insert(first, 2, 25) ;
-    Delete(first, 4) ;
-
-    Display(first) ;
+    Display(first);
 
     return 0;
-
 }
+
