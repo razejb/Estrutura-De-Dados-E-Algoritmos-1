@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include "queue.h"
-#include "fatal_EDA.h"
+#include "fatal.h"
 
 #define MinQueueSize (5)
 
