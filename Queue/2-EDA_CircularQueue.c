@@ -25,7 +25,7 @@ void create(struct Queue *q, int size)
     q->Q = (int *)malloc(q->size * sizeof(int));
 }
 
-// Função para enfileirar (inserir) um elemento no final da fila
+// Função para inserir um elemento no final da fila
 void enqueue(struct Queue *q, int x)
 {
     if ((q->rear + 1) % q->size == q->front)
@@ -37,7 +37,7 @@ void enqueue(struct Queue *q, int x)
     }
 }
 
-// Função para desenfileirar (remover) um elemento da frente da fila e retornar o seu valor
+// Função para remover um elemento da frente da fila e retornar o seu valor
 int dequeue(struct Queue *q)
 {
     int x = -1;
